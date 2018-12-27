@@ -29,14 +29,12 @@ trait CascadeUpdates
                 ));
             }
 
-//            $delete = $model->forceDeleting ? 'forceDelete' : 'delete';
-
             foreach ($model->getActiveCascadingUpdates() as $relationship) {
                 if ($model->{$relationship} instanceof Model) {
-                    $model->{$relationship}->{$delete}();
+                    $model->{$relationship}->update($model->hydrateUpdate($relationship)); //@TODO: test this
                 } else {
                     foreach ($model->{$relationship} as $child) {
-                        $child->{$delete}(); //@TODO: here's where it goes
+                        $child->update($model->hydrateUpdate($relationship));
                     }
                 }
             }
@@ -55,7 +53,7 @@ trait CascadeUpdates
      */
     protected function hasInvalidCascadingRelationships()
     {
-        return array_filter($this->getCascadingDeletes(), function ($relationship) {
+        return array_filter($this->getCascadingUpdates(), function ($relationship) {
             return ! method_exists($this, $relationship) || ! $this->{$relationship}() instanceof Relation;
         });
     }
@@ -67,7 +65,7 @@ trait CascadeUpdates
      */
     protected function getCascadingUpdates()
     {
-        return isset($this->cascadeUpdates) ? (array) $this->cascadeUpdates : [];
+        return isset($this->cascadeUpdates) ? (array) array_keys($this->cascadeUpdates) : [];
     }
 
     /**
@@ -82,9 +80,18 @@ trait CascadeUpdates
         });
     }
 
+
+    /**
+     * @return array
+     */
+    function hydrateUpdate($relationship): array{
+        $fieldsForUpdate = $this->cascadeUpdates[$relationship];
+        return array_only($this->attributes, $fieldsForUpdate);
+    }
+
     // @TODO
     public function turnOffCascade(){
         $this->updateCascadeActive = true;
-        return this;
+        return $this;
     }
 }
