@@ -8,5 +8,15 @@
       "email": "jrmadsen67@gmail.com",
       "homepage": "http://codebyjeff.com"
     }
-  ]
+  ],
+  "autoload": {
+    "psr-4": {
+      "jrmadsen67\\Database\\Support\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/"
+    }
+  }
 }
