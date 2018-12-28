@@ -1,6 +1,6 @@
 # Laravel Cascade Updates
 
-##v1.0.0
+## v1.0.0
 
 This is basically a fork of https://github.com/michaeldyrynda/laravel-cascade-soft-deletes by Michael Dyrynda. I had the idea to make this for sometime, and after planning out how I wanted it to work I searched around to see what was similar. Michael's library was already well established and worked very similarly to what I had in mind, so in the interest of getting it done quickly over the holidays and sticking to a known format, I just based mine on his work.
 
