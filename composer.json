@@ -7,6 +7,11 @@
       "name": "Jeff Madsen",
       "email": "jrmadsen67@gmail.com",
       "homepage": "http://codebyjeff.com"
+    },
+    {
+      "name": "Michael Dyrynda (original work this is based on)",
+      "email": "michael@dyrynda.com.au",
+      "homepage": "https://dyrynda.com.au"
     }
   ],
   "autoload": {
