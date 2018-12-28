@@ -32,7 +32,7 @@ class Post extends Model
 
 Now you can update an `App\Post` record, and any associated `App\Comment` records will be update. If the `App\Comment` record implements the `CascadeUpdates` trait as well, it's children will also be updated and so on.
 
-### IMPORTANT: This will only update the same field on all entities. In other words, it is not possible to tell it to update `myField` whenever the `is_active` is changed.
+##### IMPORTANT: This will only update the same field on all entities. In other words, it is not possible to tell it to update `myField` whenever the `is_active` is changed.
 
 ```php
 $post = App\Post::find($postId)
